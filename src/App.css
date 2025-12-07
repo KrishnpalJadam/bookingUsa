@@ -399,8 +399,42 @@ body {
   .hero-text p {
     font-size: 14px;
   }
+
 }
 
+
+
+
+/* FULL WIDTH INPUTS IN MOBILE */
+@media (max-width: 768px) {
+  
+  /* Override grid columns */
+  .row.g-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .col-6,
+  .col-3,
+  .col-12 {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Ensure inputs take full width */
+  .input,
+  .input-select,
+  .input-date,
+  select.input {
+    width: 100% !important;
+  }
+
+  /* Gender + Age both full width stacked */
+  .passenger-form .col-3 {
+    width: 100% !important;
+  }
+}
 
 
 
@@ -482,3 +516,6 @@ body {
   border: none;
   color: #fff;
 }
+
+
+

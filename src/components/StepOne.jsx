@@ -87,7 +87,7 @@ const StepOne = ({ trips, selectedTrip, setSelectedTrip, selectedDate, setSelect
   const valid = selectedTrip && selectedDate && isWeekend(selectedDate);
 
   return (
-    <section className="step-card">
+    <section className="step-card container">
       <div className="step-card-inner">
         
         <h3 className="section-title">

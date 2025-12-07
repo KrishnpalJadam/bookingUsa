@@ -29,7 +29,7 @@
 //       <main className="container main-content">
 //       <div className="hero-banner">
 //   <div className="hero-content">
-    
+
 //     {/* LEFT SIDE — LOGO */}
 //     <img 
 //       src="https://i.ibb.co/vv11Vmdf/visit-my-sheep-logo-high.webp"      // ← अपना लोगो path दो
@@ -94,7 +94,7 @@ import StepOne from "../components/StepOne";
 import StepTwo from "../components/StepTwo";
 import ConfirmationPopup from "../components/ConfirmationPopup";
 
-const BookingFlowRedux = () => {
+const BookingFlow = () => {
   const dispatch = useDispatch();
   const { trips, status } = useSelector(state => state.trips);
   const bookingState = useSelector(state => state.booking);
@@ -145,14 +145,31 @@ const BookingFlowRedux = () => {
       alert("Booking failed: " + (resultAction.payload?.message || resultAction.error?.message));
     }
   };
-const handleBookingConfirmed = (booking) => {
+  const handleBookingConfirmed = (booking) => {
     setBookingResult(booking);
     setShowPopup(true);
   };
   return (
-    <div>
-      <div className="hero-banner"> {/* same hero markup you had */} </div>
+    <div className="container mt-2">
+      <div className="hero-banner"> {/* same hero markup you had */}
+      <div className="hero-content">
 
+        {/* LEFT SIDE — LOGO */}
+        <img
+          src="https://i.ibb.co/vv11Vmdf/visit-my-sheep-logo-high.webp"      // ← अपना लोगो path दो
+          alt="Company Logo"
+          className="hero-logo"
+        />
+
+        {/* RIGHT SIDE — HEADING + SUBTEXT */}
+        <div className="hero-text">
+          <h1>Visit My Sheep Transportation</h1>
+          <p>Book Your Trip Now!</p>
+        </div>
+
+      </div>
+       </div>
+      {/* </div> */}
       <div className="flow-card">
         {step === 1 && (
           // <StepOne
@@ -173,13 +190,13 @@ const handleBookingConfirmed = (booking) => {
           //   goNext={() => setStep(2)}
           // />
           <StepOne
-  trips={trips} // 🔥 from backend
-  selectedTrip={selectedTrip}
-  setSelectedTrip={setSelectedTrip}
-  selectedDate={selectedDate}
-  setSelectedDate={setSelectedDate}
-  goNext={() => setStep(2)}
-/>
+            trips={trips} // 🔥 from backend
+            selectedTrip={selectedTrip}
+            setSelectedTrip={setSelectedTrip}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            goNext={() => setStep(2)}
+          />
 
         )}
 
@@ -196,16 +213,18 @@ const handleBookingConfirmed = (booking) => {
         )}
       </div>
 
-      {showPopup && (
-        <ConfirmationPopup
-          passengerData={passengerData}
-          selectedTrip={selectedTrip}
-          selectedDate={selectedDate}
-          close={() => setShowPopup(false)}
-        />
-      )}
-    </div>
+      {
+        showPopup && (
+          <ConfirmationPopup
+            passengerData={passengerData}
+            selectedTrip={selectedTrip}
+            selectedDate={selectedDate}
+            close={() => setShowPopup(false)}
+          />
+        )
+      }
+    </div >
   );
 };
 
-export default BookingFlowRedux;
+export default BookingFlow;
