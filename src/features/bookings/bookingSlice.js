@@ -6,6 +6,7 @@ const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 export const createBooking = createAsyncThunk(
   "booking/createBooking",
   async (payload, { rejectWithValue }) => {
+    console.log("Creating booking with payload:", payload);
     try {
       const res = await axios.post(`${API}/bookings`, payload);
       return res.data;
