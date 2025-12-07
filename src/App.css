@@ -400,3 +400,85 @@ body {
     font-size: 14px;
   }
 }
+
+
+
+
+
+:root {
+  --primary: #2575fc;
+  --primary-2: #a17fe0;
+}
+
+/* Gradient Button */
+.btn-primary-gradient {
+  background: linear-gradient(45deg, var(--primary), var(--primary-2));
+  border: none;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.page-title {
+  font-weight: 700;
+  color: #333;
+}
+
+/* Filter card */
+.filter-card {
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.filter-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Table Card */
+.table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Modern table style */
+.modern-table thead {
+  background: #f3f6fb;
+}
+
+.modern-table th {
+  font-weight: 600;
+  padding: 14px;
+}
+
+.modern-table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+/* Status Badges */
+.status-paid {
+  background: #1d9e4d;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Pagination */
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.pagination .page-item {
+  cursor: pointer;
+}
+
+.pagination .active .page-link {
+  background: linear-gradient(45deg, var(--primary), var(--primary-2));
+  border: none;
+  color: #fff;
+}

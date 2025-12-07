@@ -8,6 +8,10 @@ const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [filtered, setFiltered] = useState([]);
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const perPage = 5;
+
   useEffect(() => {
     loadBookings();
   }, []);
@@ -18,22 +22,44 @@ const AdminDashboard = () => {
     setFiltered(res.data);
   };
 
+  const indexOfLast = currentPage * perPage;
+  const indexOfFirst = indexOfLast - perPage;
+  const currentData = filtered.slice(indexOfFirst, indexOfLast);
+
+  const totalPages = Math.ceil(filtered.length / perPage);
+
   return (
-    <div className="container py-4">
-      <h2 className="mb-4">📅 Admin Booking Dashboard</h2>
+    <div className="admin-container container bg-white py-4">
 
-      <Filters bookings={bookings} setFiltered={setFiltered} />
+      {/* HEADER */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="page-title">📅 Booking Management</h2>
 
-      <div className="d-flex justify-content-end mb-3">
-        <button
-          className="btn btn-danger"
-          onClick={() => exportBookingsPDF(filtered)}
-        >
+        <button className="btn btn-primary-gradient" onClick={() => exportBookingsPDF(filtered)}>
           Download PDF
         </button>
       </div>
 
-      <BookingsTable data={filtered} />
+      {/* FILTERS */}
+      <Filters bookings={bookings} setFiltered={setFiltered} />
+
+      {/* TABLE */}
+      <BookingsTable data={currentData} />
+
+      {/* PAGINATION */}
+      <div className="pagination-wrapper">
+        <ul className="pagination">
+          {[...Array(totalPages)].map((_, i) => (
+            <li
+              key={i}
+              className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              <button className="page-link">{i + 1}</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

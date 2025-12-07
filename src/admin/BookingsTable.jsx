@@ -2,10 +2,14 @@ import React from "react";
 
 const BookingsTable = ({ data }) => {
   return (
-    <div className="table-responsive">
-      <table className="table table-bordered table-hover">
-        <thead className="table-dark">
+    <div className="card shadow-sm p-0 table-card">
+      <div className="table-responsive">
+
+  
+      <table className="table modern-table mb-0">
+        <thead>
           <tr>
+            <th>Sr.</th>
             <th>Trip</th>
             <th>Passenger</th>
             <th>Email</th>
@@ -18,8 +22,9 @@ const BookingsTable = ({ data }) => {
         </thead>
 
         <tbody>
-          {data.map((b) => (
+          {data.map((b, index) => (
             <tr key={b._id}>
+              <td>{index+1}</td>
               <td>{b.trip?.name}</td>
               <td>{b.passenger.fullName}</td>
               <td>{b.passenger.email}</td>
@@ -27,11 +32,16 @@ const BookingsTable = ({ data }) => {
               <td>{b.passenger.gender}</td>
               <td>{b.passenger.age}</td>
               <td>{b.date}</td>
-              <td>{b.pricePaid}</td>
+              <td>
+                <span className="badge status-paid">
+                  ${b.pricePaid}
+                </span>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+          </div>
     </div>
   );
 };
