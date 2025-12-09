@@ -15,7 +15,9 @@
 import React from "react";
 import BookingFlow from "./pages/BookingFlow";
 import "./App.css";
+import AdminDashboard from "./admin/AdminDashboard";
 
-const App = () => <BookingFlow />;
+// const App = () => <BookingFlow />;
+const App = () => <AdminDashboard />;
 
 export default App;
