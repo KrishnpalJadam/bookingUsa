@@ -213,21 +213,21 @@ const StepTwo = ({
           return res.payload.orderId;
         },
 
-        onApprove: async (data) => {
-          const res = await dispatch(
-            captureOrder({
-              orderId: data.orderID,
-              tripId: selectedTrip._id,
-              date: selectedDate,
-              passenger: passengerData,
-            })
-          );
+     onApprove: async (data) => {
+  const res = await dispatch(
+    captureOrder({
+      orderId: data.orderID,
+      tripId: selectedTrip._id,
+      date: selectedDate,
+      passenger: passengerData,
+    })
+  );
 
-          if (res.payload.booking) {
-            // confirmBooking(res.payload.booking);
-            res.payload.booking
-          }
-        },
+  if (res.payload?.booking) {
+     confirmBooking(res.payload);  // <-- SEND BOOKING + ticketUrl TO PARENT
+  }
+},
+
 
         onError: (err) => {
           console.error("PayPal Payment Error:", err);

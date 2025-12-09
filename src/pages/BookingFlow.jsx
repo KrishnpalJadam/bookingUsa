@@ -208,8 +208,8 @@ const BookingFlow = () => {
   const [step, setStep] = useState(1);
   const [selectedTrip, setSelectedTripLocal] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
-  const [bookingResult, setBookingResult] = useState(null);  // ✅ FIXED
-  const [ticketUrl, setTicketUrl] = useState("");
+   const [bookingResult, setBookingResult] = useState(null);
+const [ticketUrl, setTicketUrl] = useState("");
 
   const [passengerData, setPassengerData] = useState({
     fullName: "",
@@ -252,10 +252,12 @@ const BookingFlow = () => {
       alert("Booking failed: " + (resultAction.payload?.message || resultAction.error?.message));
     }
   };
-  const handleBookingConfirmed = (booking) => {
-    setBookingResult(booking);
-    setShowPopup(true);
-  };
+   const handleBookingConfirmed = (payload) => {
+  setBookingResult(payload.booking);
+  setTicketUrl(payload.ticketUrl);
+  setShowPopup(true);
+};
+
   return (
     <div className="container mt-2">
       <div className="hero-banner"> {/* same hero markup you had */}
@@ -304,11 +306,13 @@ const BookingFlow = () => {
       {
         showPopup && (
           <ConfirmationPopup
-            passengerData={passengerData}
-            selectedTrip={selectedTrip}
-            selectedDate={selectedDate}
-            close={() => setShowPopup(false)}
-          />
+  passengerData={passengerData}
+  selectedTrip={selectedTrip}
+  selectedDate={selectedDate}
+  ticketUrl={ticketUrl}
+  close={() => setShowPopup(false)}
+/>
+
         )
       }
     </div >
