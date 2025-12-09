@@ -224,7 +224,8 @@ const StepTwo = ({
           );
 
           if (res.payload.booking) {
-            confirmBooking(res.payload.booking);
+            // confirmBooking(res.payload.booking);
+            res.payload.booking
           }
         },
 
